@@ -2,7 +2,6 @@ package anpopo.spring.framework.practice.entity;
 
 import anpopo.spring.framework.practice.type.DeveloperLevel;
 import anpopo.spring.framework.practice.type.DeveloperSkillType;
-import anpopo.spring.framework.practice.code.StatusCode;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -22,18 +21,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Developer {
+public class RetiredDeveloper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @Enumerated(EnumType.STRING)
-    private DeveloperLevel developerLevel;
-
-    @Enumerated(EnumType.STRING)
-    private DeveloperSkillType developerSkillType;
-    @Column
-    private Integer experienceYears;
 
     @Column
     private String memberId;
@@ -41,25 +33,10 @@ public class Developer {
     @Column
     private String name;
 
-    @Column
-    private Integer age;
-
-    @Enumerated(EnumType.STRING)
-    private StatusCode statusCode;
-
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    public void updateDeveloper(DeveloperLevel developerLevel, DeveloperSkillType developerSkillType, Integer experienceYears) {
-        this.developerLevel = developerLevel;
-        this.developerSkillType = developerSkillType;
-        this.experienceYears = experienceYears;
-    }
-
-    public void updateStatusCode(StatusCode statusCode) {
-        this.statusCode = statusCode;
-    }
 }

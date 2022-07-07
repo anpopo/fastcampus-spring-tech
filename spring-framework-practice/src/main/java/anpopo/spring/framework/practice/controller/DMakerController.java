@@ -1,16 +1,15 @@
 package anpopo.spring.framework.practice.controller;
 
 import anpopo.spring.framework.practice.dto.CreateDeveloper;
+import anpopo.spring.framework.practice.dto.DeveloperDetailDto;
+import anpopo.spring.framework.practice.dto.DeveloperDto;
+import anpopo.spring.framework.practice.dto.EditDeveloper;
 import anpopo.spring.framework.practice.service.DMakerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,15 +24,38 @@ public class DMakerController {
 
     // GET /developers HTTP/1.1
     @GetMapping("/developers")
-    public void getAllDevelopers() {
+    public List<DeveloperDto> getAllDevelopers() {
         log.info("GET /developers HTTP/1.1");
+        return dMakerService.getAllDevelopers();
+    }
+
+    @GetMapping("/developer/{memberId}")
+    public DeveloperDetailDto getDeveloperDetail(@PathVariable("memberId") String memberId) {
+        log.info("GET /developer HTTP/1.1");
+        return dMakerService.getDeveloperDetail(memberId);
     }
 
     @PostMapping("/create-developer")
-    public List<String> createDevelopers(@RequestBody CreateDeveloper.@Valid Request request) {
+    public CreateDeveloper.Response createDevelopers(@RequestBody CreateDeveloper.@Valid Request request) {
 //        log.info("GET /create-developers HTTP/1.1");
+        log.info("create request : {}", request);
+        return dMakerService.createDeveloper(request);
+    }
 
-        dMakerService.createDeveloper(request);
-        return Collections.singletonList("Olaf");
+    @PutMapping("/developer/{memberId}")
+    public DeveloperDetailDto updateDeveloper(
+            @PathVariable("memberId") String memberId,
+            @RequestBody EditDeveloper.@Valid Request request
+    ) {
+//        log.info("GET /create-developers HTTP/1.1");
+        log.info("create request : {}", request);
+        return dMakerService.updateDeveloper(memberId, request);
+    }
+
+    @DeleteMapping("/developer/{memberId}")
+    public DeveloperDetailDto deleteDeveloper(
+            @PathVariable("memberId") String memberId
+    ) {
+        return dMakerService.deleteDeveloper(memberId);
     }
 }

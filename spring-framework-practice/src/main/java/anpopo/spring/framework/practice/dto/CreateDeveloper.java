@@ -1,6 +1,7 @@
 package anpopo.spring.framework.practice.dto;
 
 
+import anpopo.spring.framework.practice.entity.Developer;
 import anpopo.spring.framework.practice.type.DeveloperLevel;
 import anpopo.spring.framework.practice.type.DeveloperSkillType;
 import lombok.*;
@@ -50,10 +51,16 @@ public class CreateDeveloper {
         private DeveloperLevel developerLevel;
         private DeveloperSkillType developerSkillType;
         private Integer experienceYears;
-
-        private String name;
         private String memberId;
-        private Integer age;
+
+        public static Response fromEntity(Developer developer) {
+            return Response.builder()
+                    .developerLevel(developer.getDeveloperLevel())
+                    .developerSkillType(developer.getDeveloperSkillType())
+                    .experienceYears(developer.getExperienceYears())
+                    .memberId(developer.getMemberId())
+                    .build();
+        }
     }
 
 }
