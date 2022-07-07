@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public class DMakerException extends RuntimeException {
-    private DMakerErrorCode dMakerErrorCode;
-    private String detailMessage;
+    private final DMakerErrorCode dMakerErrorCode;
+    private final String detailMessage;
 
     public DMakerException(DMakerErrorCode dMakerErrorCode) {
         super(dMakerErrorCode.getMessage());

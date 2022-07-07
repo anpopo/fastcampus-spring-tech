@@ -1,14 +1,13 @@
 package anpopo.spring.framework.practice.controller;
 
-import anpopo.spring.framework.practice.dto.CreateDeveloper;
-import anpopo.spring.framework.practice.dto.DeveloperDetailDto;
-import anpopo.spring.framework.practice.dto.DeveloperDto;
-import anpopo.spring.framework.practice.dto.EditDeveloper;
+import anpopo.spring.framework.practice.dto.*;
+import anpopo.spring.framework.practice.exception.DMakerException;
 import anpopo.spring.framework.practice.service.DMakerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -57,5 +56,17 @@ public class DMakerController {
             @PathVariable("memberId") String memberId
     ) {
         return dMakerService.deleteDeveloper(memberId);
+    }
+
+    @ExceptionHandler(DMakerException.class)
+    public DMakerErrorResponse handleException(DMakerException e, HttpServletRequest request) {
+        log.error("errorCode : {}, url: {}, message: {}",
+                e.getDMakerErrorCode(),
+                request.getRequestURI(),
+                e.getDetailMessage());
+        return DMakerErrorResponse.builder()
+                .errorCode(e.getDMakerErrorCode())
+                .errorMessage(e.getDetailMessage())
+                .build();
     }
 }
