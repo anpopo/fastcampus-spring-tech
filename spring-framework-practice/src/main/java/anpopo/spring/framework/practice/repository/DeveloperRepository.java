@@ -4,7 +4,6 @@ import anpopo.spring.framework.practice.code.StatusCode;
 import anpopo.spring.framework.practice.entity.Developer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 

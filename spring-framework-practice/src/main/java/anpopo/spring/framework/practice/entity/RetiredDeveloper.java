@@ -1,7 +1,5 @@
 package anpopo.spring.framework.practice.entity;
 
-import anpopo.spring.framework.practice.type.DeveloperLevel;
-import anpopo.spring.framework.practice.type.DeveloperSkillType;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

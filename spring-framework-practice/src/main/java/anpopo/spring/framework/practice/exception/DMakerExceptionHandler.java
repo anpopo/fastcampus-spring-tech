@@ -29,7 +29,6 @@ public class DMakerExceptionHandler {
             value = {
                     HttpRequestMethodNotSupportedException.class,
                     MethodArgumentNotValidException.class,
-
             }
     )
     public DMakerErrorResponse handleBadException(Exception e, HttpServletRequest request) {

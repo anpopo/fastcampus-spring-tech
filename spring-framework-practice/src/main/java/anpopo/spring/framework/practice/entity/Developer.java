@@ -1,8 +1,8 @@
 package anpopo.spring.framework.practice.entity;
 
+import anpopo.spring.framework.practice.code.StatusCode;
 import anpopo.spring.framework.practice.type.DeveloperLevel;
 import anpopo.spring.framework.practice.type.DeveloperSkillType;
-import anpopo.spring.framework.practice.code.StatusCode;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -53,7 +53,7 @@ public class Developer {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    public void updateDeveloper(DeveloperLevel developerLevel, DeveloperSkillType developerSkillType, Integer experienceYears) {
+    public void updateDeveloperFromRequest(DeveloperLevel developerLevel, DeveloperSkillType developerSkillType, Integer experienceYears) {
         this.developerLevel = developerLevel;
         this.developerSkillType = developerSkillType;
         this.experienceYears = experienceYears;
